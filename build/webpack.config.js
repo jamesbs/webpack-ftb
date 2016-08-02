@@ -2,11 +2,14 @@ const webpack = require('webpack');
 const paths = require('./paths');
 const pathLiteral = require('./utils/path-literal');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const process = require('process');
 const proj = pathLiteral(paths.project);
 
+
 module.exports = {
-  entry: proj`./src/index.js`,
+  context: paths.project, 
+
+  entry: proj`./src/index.ts`,
 
   output: {
     path: 'dist',
@@ -18,6 +21,11 @@ module.exports = {
 
   module: {
     loaders: [
+      {
+        test: /\.ts$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.(jpg|jpeg|gif|png|svg|tif|ttf)$/,
         loaders: [
