@@ -38,6 +38,14 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.styl/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader',
+        ],
+      },
       { 
         test: /\.css$/, 
         loaders: [
@@ -58,5 +66,13 @@ module.exports = {
       template: './src/index.html',
       inject: 'body'
     })
-  ]
+  ],
+
+  devServer: {
+    contentBase: paths.dist,
+    historyApiFallback: true,
+    inline: true,
+    compress: true,
+    port: 8057,
+  }
 };
